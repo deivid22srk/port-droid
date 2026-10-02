@@ -87,7 +87,7 @@ npx serve .
    | `performance` | `leve`, `medio` ou `pesado` (filtro de desempenho) |
    | `version` / `apkSize` / `storage` | Versão do port, tamanho do APK e armazenamento necessário |
    | `updated` / `dateAdded` / `downloads` | Data da atualização, data de inclusão e contador de downloads (edite manualmente) |
-   | `cover` / `banner` / `screenshots` | Caminhos das imagens (veja abaixo) |
+   | `cover` / `banner` / `screenshots` | Caminhos das imagens — **resoluções na seção 📐 "Resolução ideal das imagens"** |
    | `videoId` | ID de vídeo do YouTube para embed (ou `null` → mostra "Em breve" com link do canal) |
    | `shortDescription` / `description` | Textos de vitrine e parágrafos completos |
    | `requirements.minimo` / `requirements.recomendado` | Tabelas de requisitos (`"Chave": "valor"`) |
@@ -99,9 +99,9 @@ npx serve .
 2. Crie a pasta de imagens do jogo e referencie no JSON:
 
    ```
-   assets/img/games/<id>/cover.svg      # capa 3:4 (600x800)
-   assets/img/games/<id>/banner.svg     # banner 16:9 (1280x720)
-   assets/img/games/<id>/shot-1.svg     # screenshots 16:9
+   assets/img/games/<id>/cover.jpg      # capa 3:4   → 600x800 (ou 720x960)
+   assets/img/games/<id>/banner.jpg     # banner 16:9 → 1280x720
+   assets/img/games/<id>/shot-1.jpg     # screenshot 16:9 → 1280x720
    ```
 
    Para usar imagens reais (JPG/PNG/WebP), basta salvar os arquivos na pasta e
@@ -114,13 +114,43 @@ npx serve .
 > pública de downloads das releases do GitHub em 03/10/2026. Atualize o número
 > quando quiser — é um campo editável, não automático.
 
-## 🖼️ Trocando logo, ícones e placeholders
+## 🖼️ Resolução ideal das imagens
+
+Todas as capas, banners e screenshots são renderizadas com `object-fit: cover`:
+se a proporção do arquivo não bater com a da layout, a imagem é **recortada no
+centro** automaticamente. Para evitar recortes indesejados, borrão em telas
+grandes e carregamento lento no 4G, siga esta especificação:
+
+| Imagem | Onde aparece | Proporção | Resolução ideal | Formato | Peso máx. |
+|---|---|---|---|---|---|
+| **Capa** (`cover`) | Cards da home, catálogo e busca | **3:4** retrato | **600×800** (mín.) · **720×960** (ideal) | WebP/JPG | ~250 KB |
+| **Banner** (`banner`) | Topo da página do jogo | **16:9** paisagem | **1280×720** | WebP/JPG | ~400 KB |
+| **Screenshot** (`shot-1`…`shot-3`) | Galeria + lightbox da página do jogo | **16:9** paisagem | **1280×720** (igual ao banner) | WebP/JPG | ~300 KB cada |
+| Ícones do PWA | Instalação do app / atalho | 1:1 | 192×192 e 512×512 (`maskable-512` com área segura de 80%) | PNG | — |
+| **OG image** (compartilhamento) | Preview no WhatsApp, Telegram, X etc. | 1,91:1 | **1200×630** | PNG/JPG | < 1 MB |
+| Logo / favicon | Header, splash, aba do navegador | 1:1 vetorial | SVG escalável | SVG | — |
+
+**Regras rápidas**
+
+1. **Capas são retrato 3:4** — exemplo: 600×800, 720×960 ou 900×1200. Nunca envie
+   capa quadrada ou 16:9; ela será recortada nas laterais.
+2. **Banner e screenshots são paisagem 16:9** — exemplo: 1280×720 ou 1920×1080
+   (o dobro serve, só pese mais; 1280×720 já atende todas as telas do site).
+3. **Prefira WebP** (ou JPG com qualidade 80–85) para carregar rápido no mobile.
+4. **Não use arquivos menores que o mínimo** — capas abaixo de 600×800 e banners
+   abaixo de 1280×720 ficam esticados/borrados em telas grandes.
+5. **Nomeie os arquivos** `cover.*`, `banner.*`, `shot-1.*`, `shot-2.*`, `shot-3.*`
+   dentro de `assets/img/games/<id>/` e atualize os caminhos no `games.json`.
+6. **Trocou imagens?** Aumente a `VERSION` no `sw.js` para o cache do PWA baixar
+   a versão nova (o site em produção usa service worker).
+
+### Trocando logo, ícones e placeholders
 
 - **Logo/favicon:** substitua `assets/img/logo.svg` e `assets/img/favicon.svg`
 - **Ícones do PWA:** gere PNGs 192/512 (e `maskable-512`) e troque os arquivos em
   `assets/img/icons/`; atualize a `VERSION` no `sw.js` ao trocar assets
 - **Imagem de compartilhamento (Open Graph):** `assets/img/og-image.png` (1200x630)
-- **Capas/banners/screenshots dos jogos:** veja a seção anterior
+- **Capas/banners/screenshots dos jogos:** veja a tabela de resoluções acima
 
 ## 📦 Publicação (GitHub Pages)
 
