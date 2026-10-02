@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://deivid22srk.github.io/port-droid/sitemap.xml

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0D0D0D">
+  <title>Catálogo de ports — port-droid</title>
+  <meta name="description" content="Catálogo completo de ports de jogos para Android do canal Hail Games. Busca em tempo real, filtros por categoria, chipset e desempenho.">
+  <link rel="canonical" href="https://deivid22srk.github.io/port-droid/catalog.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="port-droid">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Catálogo de ports — port-droid">
+  <meta property="og:description" content="Busque e filtre ports de jogos para Android por categoria, chipset e desempenho.">
+  <meta property="og:url" content="https://deivid22srk.github.io/port-droid/catalog.html">
+  <meta property="og:image" content="https://deivid22srk.github.io/port-droid/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.json">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/pages.css">
+</head>
+<body data-page="catalog">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header" id="siteHeader"></header>
+
+  <main id="conteudo">
+    <div class="container">
+      <!-- Cabeçalho da página -->
+      <div class="page-head">
+        <span class="kicker">Todos os ports</span>
+        <h1>Catálogo</h1>
+        <p>
+          Todo port cadastrado aponta para o repositório oficial do autor.
+          Use a busca e os filtros para achar o ideal para o seu aparelho.
+        </p>
+      </div>
+
+      <!-- Barra de ferramentas: busca + filtros -->
+      <div class="catalog-toolbar" role="search" aria-label="Filtros do catálogo">
+        <div class="search-field">
+          <span data-ico="search"></span>
+          <label class="visually-hidden" for="searchInput">Buscar jogos</label>
+          <input type="search" id="searchInput" placeholder="Buscar por nome, tag ou port…" autocomplete="off">
+          <button type="button" class="search-clear" id="searchClear" aria-label="Limpar busca">
+            <span data-ico="close"></span>
+          </button>
+        </div>
+        <div class="toolbar-row">
+          <div class="chips-scroll" id="catChips" role="group" aria-label="Filtrar por categoria" style="display:contents"></div>
+          <label class="visually-hidden" for="chipSelect">Filtrar por chipset</label>
+          <select class="filter-select" id="chipSelect">
+            <option value="">Chipset: todos</option>
+          </select>
+          <label class="visually-hidden" for="perfSelect">Filtrar por desempenho</label>
+          <select class="filter-select" id="perfSelect">
+            <option value="">Desempenho: todos</option>
+            <option value="leve">Leve</option>
+            <option value="medio">Médio</option>
+            <option value="pesado">Pesado</option>
+          </select>
+          <label class="visually-hidden" for="sortSelect">Ordenar resultados</label>
+          <select class="filter-select" id="sortSelect">
+            <option value="recentes">Mais recentes</option>
+            <option value="populares">Mais baixados</option>
+            <option value="az">Ordem A–Z</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="result-count" id="resultCount" aria-live="polite"></p>
+
+      <!-- Grade de resultados -->
+      <div class="grid-cards" id="catalogGrid" style="grid-template-columns: repeat(auto-fill, minmax(min(210px, 42vw), 1fr));"></div>
+
+      <!-- Estado vazio -->
+      <div class="empty-state" id="emptyState">
+        <span data-ico="search"></span>
+        <h3>Nenhum port encontrado</h3>
+        <p>Tente outros termos de busca ou remova os filtros para ver tudo o que já está disponível no catálogo.</p>
+        <button class="btn btn-ghost" id="resetFilters" type="button">Limpar filtros</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="siteFooter"></footer>
+
+  <script src="./assets/js/main.js" defer></script>
+  <script src="./assets/js/catalog.js" defer></script>
+</body>
+</html>

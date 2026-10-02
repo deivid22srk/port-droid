@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0D0D0D">
+  <title>Jogo — port-droid</title>
+  <meta name="description" content="Requisitos, instruções de instalação, galeria e links oficiais deste port de jogo para Android.">
+  <link rel="canonical" href="https://deivid22srk.github.io/port-droid/game.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="port-droid">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="port-droid — Página do port">
+  <meta property="og:description" content="Requisitos, instruções de instalação e links oficiais deste port.">
+  <meta property="og:url" content="https://deivid22srk.github.io/port-droid/game.html">
+  <meta property="og:image" content="https://deivid22srk.github.io/port-droid/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.json">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/pages.css">
+</head>
+<body data-page="game">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header" id="siteHeader"></header>
+
+  <main id="gamePage">
+    <!-- Banner -->
+    <div class="game-banner">
+      <a class="back-link" href="./catalog.html">
+        <span data-ico="arrow"></span>
+        Catálogo
+      </a>
+      <img id="bannerImg" src="./assets/img/games/sonic-unleashed/banner.svg" alt="Banner do port" width="1280" height="720" fetchpriority="high">
+    </div>
+
+    <div class="container">
+      <!-- Cabeçalho do jogo -->
+      <div class="game-head">
+        <div class="game-head-card">
+          <img class="game-cover" id="gameCover" src="./assets/img/games/sonic-unleashed/cover.svg" alt="Capa do jogo" width="600" height="800">
+          <div>
+            <nav aria-label="Trilha de navegação" style="font-size:.78rem;color:var(--text-dim);margin-bottom:8px">
+              <a href="./index.html" style="color:inherit">Início</a> /
+              <a href="./catalog.html" style="color:inherit">Catálogo</a> /
+              <span id="gameCrumb" aria-current="page" style="color:var(--text-muted)">—</span>
+            </nav>
+            <h1 class="game-title" id="gameTitle">Carregando…</h1>
+            <p class="game-port-name" id="gamePort"></p>
+            <div class="game-tags" id="gameTags"></div>
+            <div class="game-actions">
+              <a class="btn btn-primary" id="btnDownload" href="#" target="_blank" rel="noopener noreferrer">
+                <span data-ico="download"></span>
+                Baixar APK
+              </a>
+              <a class="btn btn-ghost" id="btnGithub" href="#" target="_blank" rel="noopener noreferrer">
+                <span data-ico="github"></span>
+                Ver no GitHub
+              </a>
+              <a class="btn btn-ghost hidden" id="btnSite" href="#" target="_blank" rel="noopener noreferrer">
+                <span data-ico="external"></span>
+                Site oficial
+              </a>
+              <a class="btn btn-ghost" id="btnTutorial" href="#" target="_blank" rel="noopener noreferrer">
+                <span data-ico="youtube"></span>
+                Tutorial no canal
+              </a>
+            </div>
+            <p class="game-credit" id="gameCredit"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conteúdo + sidebar -->
+      <div class="game-layout">
+        <div class="game-main">
+          <section class="block" aria-labelledby="tDesc">
+            <h2 id="tDesc"><span data-ico="info"></span> Sobre o port</h2>
+            <div id="gameDesc"></div>
+          </section>
+
+          <section class="block" aria-labelledby="tReq">
+            <h2 id="tReq"><span data-ico="cpu"></span> Requisitos</h2>
+            <div class="req-tables">
+              <div class="req-card">
+                <h3>Mínimos</h3>
+                <table>
+                  <tbody id="reqMin"></tbody>
+                </table>
+              </div>
+              <div class="req-card">
+                <h3>Recomendados</h3>
+                <table>
+                  <tbody id="reqRec"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section class="block" aria-labelledby="tInst">
+            <h2 id="tInst"><span data-ico="download"></span> Como instalar</h2>
+            <ol class="steps" id="installSteps"></ol>
+          </section>
+
+          <section class="block" aria-labelledby="tCtrl">
+            <h2 id="tCtrl"><span data-ico="pad"></span> Controles</h2>
+            <ul class="plain-list" id="ctrlList"></ul>
+          </section>
+
+          <section class="block" aria-labelledby="tGal">
+            <h2 id="tGal"><span data-ico="layers"></span> Galeria</h2>
+            <div class="gallery" id="gallery"></div>
+          </section>
+
+          <section class="block" aria-labelledby="tVid">
+            <h2 id="tVid"><span data-ico="youtube"></span> Vídeo</h2>
+            <div class="video-box" id="videoBox"></div>
+          </section>
+
+          <div class="note-box hidden" id="gameNotes">
+            <span data-ico="alert"></span>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="game-side" aria-label="Informações do port">
+          <div class="side-card">
+            <h3>Informações do port</h3>
+            <dl class="info-list" id="infoList"></dl>
+          </div>
+
+          <div class="side-card">
+            <h3>Links</h3>
+            <div class="side-links">
+              <a class="btn btn-primary btn-sm" id="btnDownloadSide" href="#" target="_blank" rel="noopener noreferrer">
+                <span data-ico="download"></span> Baixar
+              </a>
+              <a class="btn btn-ghost btn-sm" id="btnGithubSide" href="#" target="_blank" rel="noopener noreferrer">
+                <span data-ico="github"></span> Repositório
+              </a>
+              <a class="btn btn-ghost btn-sm hidden" id="sideSiteLink" href="#" target="_blank" rel="noopener noreferrer">
+                <span data-ico="external"></span> Site do projeto
+              </a>
+              <a class="btn btn-ghost btn-sm" id="sideYt" href="#" target="_blank" rel="noopener noreferrer">
+                <span data-ico="youtube"></span> Canal no YouTube
+              </a>
+              <a class="btn btn-ghost btn-sm" id="sideTg" href="#" target="_blank" rel="noopener noreferrer">
+                <span data-ico="telegram"></span> Grupo no Telegram
+              </a>
+            </div>
+          </div>
+
+          <div class="side-card">
+            <h3>Aviso</h3>
+            <p class="footer-note" style="margin:0">
+              O port-droid é apenas uma vitrine. Nenhum arquivo é hospedado aqui —
+              o download aponta para o repositório oficial do autor do port.
+              Você precisa possuir uma cópia legal do jogo original.
+            </p>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Relacionados -->
+      <section class="section" id="relatedWrap" aria-labelledby="tRel" style="padding-inline:0">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Continue explorando</span>
+            <h2 id="tRel" style="font-size:1.6rem">Outros ports</h2>
+          </div>
+          <a class="section-link" href="./catalog.html">Ver catálogo <span data-ico="arrow"></span></a>
+        </div>
+        <div class="grid-cards" id="relatedGrid"></div>
+      </section>
+    </div>
+
+    <!-- Lightbox da galeria -->
+    <dialog class="lightbox" id="lightbox" aria-label="Screenshot ampliada">
+      <img id="lightboxImg" src="" alt="">
+      <div style="text-align:right;margin-top:10px">
+        <button class="btn btn-ghost btn-sm" id="lightboxClose" type="button">Fechar</button>
+      </div>
+    </dialog>
+  </main>
+
+  <footer class="site-footer" id="siteFooter"></footer>
+
+  <script src="./assets/js/main.js" defer></script>
+  <script src="./assets/js/game.js" defer></script>
+</body>
+</html>
