@@ -19,13 +19,14 @@ Android, organizados pelo canal [Hail Games (@Hail-Games1)](https://www.youtube.
 ## ✨ Recursos
 
 - **Home** com hero, destaque, *Novos ports*, *Mais baixados* e *Categorias* (tudo dinâmico a partir do `games.json`)
-- **Catálogo** com busca em tempo real, filtros (categoria, chipset, desempenho), ordenação e estado sincronizado na URL
+- **Experiência estilo aplicativo**: navigation bar inferior fixa com 4 abas (Início · Jogos · Buscar · Canal), app bar compacta com busca, splash screen na abertura, transição suave entre telas e pill de "Instalar app" — no desktop (≥900px) volta à navegação superior tradicional
+- **Catálogo** com busca em tempo real (a aba *Buscar* já abre com o campo focado), filtros (categoria, chipset, desempenho), ordenação e estado sincronizado na URL
 - **Página do jogo** com banner, galeria + lightbox, requisitos mínimos/recomendados, instruções de instalação, créditos dos autores e botões "Baixar APK" / "Ver no GitHub"
 - **Sobre o canal** com links do YouTube e do Telegram
 - **Aviso legal** completo (sem afiliação, sem hospedagem de arquivos, contato para remoção)
 - **PWA** instalável (manifest + service worker com estratégia network-first para páginas e cache para assets)
 - **SEO básico**: title/description por página, Open Graph, Twitter Card, JSON-LD, `robots.txt` e `sitemap.xml`
-- **UX**: mobile first, skeleton loading, lazy loading de imagens, animações suaves com `prefers-reduced-motion`, foco visível, HTML semântico e contraste alto
+- **UX**: mobile first com cara de app nativo, skeleton loading, lazy loading de imagens, animações suaves com `prefers-reduced-motion`, respeito a safe-areas (notch/barra de gestos), foco visível, HTML semântico e contraste alto
 - Tema escuro gamer com destaque em **amarelo-limão** (`#DFFF00`), tipografia **Rajdhani + Inter**
 
 ## 🗂️ Estrutura do projeto
@@ -48,7 +49,7 @@ port-droid/
 └── assets/
     ├── css/style.css              # Design system (tokens, header, cards…)
     ├── css/pages.css              # Estilos por página
-    ├── js/main.js                 # Código compartilhado (header, footer, dados)
+    ├── js/main.js                 # Código compartilhado (app bar, nav bar, splash, dados)
     ├── js/home.js                 # Lógica da home
     ├── js/catalog.js              # Lógica do catálogo
     ├── js/game.js                 # Lógica da página do jogo

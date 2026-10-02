@@ -184,4 +184,14 @@
   searchInput.parentElement.classList.toggle("has-value", !!state.q);
   buildFilters();
   apply(false);
+
+  /* Aba "Buscar" da navigation bar (#buscar): abre o catálogo com o campo
+     de busca já focado — comportamento de aplicativo nativo */
+  if (location.hash === "#buscar") searchInput.focus({ preventScroll: true });
+
+  /* e também quando o hash muda sem recarregar a página
+     (ex.: usuário já estava no catálogo e toca na aba Buscar) */
+  window.addEventListener("hashchange", () => {
+    if (location.hash === "#buscar") searchInput.focus({ preventScroll: true });
+  });
 })();

@@ -1,7 +1,8 @@
 /* =============================================================================
    port-droid — main.js
-   Código compartilhado entre as páginas: injeção do header/footer, menu
-   mobile, camada de dados (games.json + cache), utilidades e animações.
+   Código compartilhado entre as páginas: injeção do header/footer,
+   navigation bar inferior (estilo aplicativo), splash screen, pill de
+   instalação PWA, camada de dados (games.json + cache) e animações.
    ============================================================================= */
 "use strict";
 
@@ -22,6 +23,7 @@ const I = (paths, fill = false) =>
 
 const ICONS = {
   search: I('<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>'),
+  home: I('<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h5v-6h4v6h5V9.5"/>'),
   menu: I('<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>'),
   close: I('<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>'),
   download: I('<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>'),
@@ -171,19 +173,56 @@ function renderHeader() {
       ${ICONS.search}
       <input type="search" name="q" placeholder="Buscar jogos…" aria-label="Buscar jogos no catálogo" autocomplete="off">
     </form>
-    <button class="icon-btn" id="menuBtn" aria-expanded="false" aria-controls="navMobile" aria-label="Abrir menu de navegação">${ICONS.menu}</button>
-  </div>
-  <nav class="nav-mobile" id="navMobile" aria-label="Menu mobile">${navLinks}</nav>`;
-
-  const btn = $("#menuBtn");
-  const panel = $("#navMobile");
-  btn.addEventListener("click", () => {
-    const open = panel.classList.toggle("open");
-    btn.setAttribute("aria-expanded", String(open));
-    btn.setAttribute("aria-label", open ? "Fechar menu de navegação" : "Abrir menu de navegação");
-    btn.innerHTML = open ? ICONS.close : ICONS.menu;
-  });
+    <!-- No mobile a busca fica no app bar; no desktop usa o campo de texto -->
+    <a class="icon-btn header-search-btn" href="./catalog.html#buscar" aria-label="Buscar jogos">${ICONS.search}</a>
+  </div>`;
 }
+
+/* ------------------------------------------------- Navigation bar (app) */
+/* Abas fixas no rodapé, como em aplicativos nativos. No desktop (≥900px)
+   a barra some e volta a navegação superior tradicional. */
+const TABS = [
+  { id: "home", href: "./index.html", label: "Início", icon: "home" },
+  { id: "catalog", href: "./catalog.html", label: "Jogos", icon: "pad" },
+  { id: "buscar", href: "./catalog.html#buscar", label: "Buscar", icon: "search" },
+  { id: "about", href: "./about.html", label: "Canal", icon: "youtube" },
+];
+
+function activeTab() {
+  const page = document.body.dataset.page || "";
+  if (page === "home") return "home";
+  if (page === "about") return "about";
+  if (page === "game") return "catalog";
+  if (page === "catalog") return location.hash === "#buscar" ? "buscar" : "catalog";
+  return "";
+}
+
+function renderBottomNav() {
+  if ($("#bottomNav")) return;
+  const nav = document.createElement("nav");
+  nav.className = "bottom-nav";
+  nav.id = "bottomNav";
+  nav.setAttribute("aria-label", "Navegação principal");
+  const act = activeTab();
+  nav.innerHTML = TABS.map(
+    (t) => `
+    <a href="${t.href}" data-tab="${t.id}" ${t.id === act ? 'class="active" aria-current="page"' : ""}>
+      ${ICONS[t.icon]}<span>${t.label}</span>
+    </a>`
+  ).join("");
+  document.body.appendChild(nav);
+}
+
+/* mantém a aba ativa correta quando o hash muda (ex.: entrar em #buscar) */
+window.addEventListener("hashchange", () => {
+  const act = activeTab();
+  $$("#bottomNav a").forEach((a) => {
+    const on = a.dataset.tab === act;
+    a.classList.toggle("active", on);
+    if (on) a.setAttribute("aria-current", "page");
+    else a.removeAttribute("aria-current");
+  });
+});
 
 function renderFooter() {
   const host = $("#siteFooter");
@@ -234,6 +273,71 @@ function renderFooter() {
   </div>`;
 }
 
+/* ------------------------------------------------------------ Splash screen */
+/* Abertura rápida estilo aplicativo — apenas na primeira visita da sessão */
+(() => {
+  try {
+    if (sessionStorage.getItem("pd_splash")) return;
+    sessionStorage.setItem("pd_splash", "1");
+  } catch (_) {
+    return; // storage indisponível: pula o splash
+  }
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const el = document.createElement("div");
+  el.className = "splash";
+  el.setAttribute("aria-hidden", "true");
+  el.innerHTML = `
+    <img src="./assets/img/logo.svg" alt="" width="72" height="72">
+    <p class="splash-brand">port<span>-droid</span></p>
+    <div class="splash-bar"><span></span></div>`;
+  document.body.prepend(el);
+  setTimeout(() => {
+    el.classList.add("out");
+    setTimeout(() => el.remove(), 450);
+  }, 950);
+})();
+
+/* ------------------------------------------------- Pill de instalação PWA */
+let installEvt = null;
+
+function setupInstallPill() {
+  if (matchMedia("(display-mode: standalone)").matches) return; // já é app instalado
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    installEvt = e;
+    try {
+      if (localStorage.getItem("pd_install_hide")) return;
+    } catch (_) { /* segue */ }
+
+    const pill = document.createElement("div");
+    pill.className = "install-pill";
+    pill.setAttribute("role", "dialog");
+    pill.setAttribute("aria-label", "Instalar aplicativo");
+    pill.innerHTML = `
+      <span class="ico-box">${ICONS.download}</span>
+      <p>Instale o <strong>port-droid</strong> na sua tela inicial</p>
+      <button class="btn btn-primary btn-sm" type="button">Instalar</button>
+      <button class="pill-close" type="button" aria-label="Dispensar">${ICONS.close}</button>`;
+    document.body.appendChild(pill);
+    requestAnimationFrame(() => pill.classList.add("show"));
+
+    pill.querySelector(".btn").addEventListener("click", async () => {
+      if (!installEvt) return;
+      pill.classList.remove("show");
+      installEvt.prompt();
+      await installEvt.userChoice;
+      installEvt = null;
+      setTimeout(() => pill.remove(), 350);
+    });
+    pill.querySelector(".pill-close").addEventListener("click", () => {
+      try { localStorage.setItem("pd_install_hide", "1"); } catch (_) { /* segue */ }
+      pill.classList.remove("show");
+      setTimeout(() => pill.remove(), 350);
+    });
+  });
+}
+
 /* ------------------------------------------------------ Reveal on scroll */
 let revealObserver = null;
 
@@ -282,6 +386,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderHeader();
   renderFooter();
+  renderBottomNav();
+  setupInstallPill();
   attachReveal();
   registerSW();
 });
