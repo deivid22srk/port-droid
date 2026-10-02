@@ -1,0 +1,22 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs e temporários
+*.log
+tmp/
+.cache/
+
+# Dependências (caso alguém adicione ferramentas locais)
+node_modules/
+
+# Arquivos locais de segredos — nunca comitar tokens
+.env
+.env.*
