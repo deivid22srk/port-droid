@@ -1261,3 +1261,287 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* =============================================================================
+   Tela de busca dedicada (search.html) — estilo "SearchActivity" de app:
+   tela cheia, topbar com voltar + campo, recentes, sugestões e resultados.
+   ============================================================================= */
+
+/* a tela de busca não tem navigation bar: ocupa o aparelho inteiro */
+@media (max-width: 899px) {
+  body[data-page="search"] {
+    padding-bottom: 0;
+  }
+}
+
+.search-screen {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* topbar fixa: voltar + campo (com respiro da notch via safe-area) */
+.search-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: calc(10px + env(safe-area-inset-top)) 14px 10px;
+  background: rgba(13, 13, 13, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.search-field-app {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-field-app input {
+  padding: 12px 46px;
+  border-radius: 999px;
+  background: var(--bg-2);
+}
+
+.search-field-app input::-webkit-search-cancel-button,
+.search-field-app input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* conteúdo entra deslizando da direita, como transição de activity Android */
+@keyframes searchIn {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.search-body {
+  flex: 1;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 16px calc(46px + env(safe-area-inset-bottom));
+  animation: searchIn 0.32s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+.s-section {
+  margin: 0 0 28px;
+}
+
+.s-section:last-child {
+  margin-bottom: 0;
+}
+
+.s-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+
+.s-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.s-title-row .s-title {
+  margin-bottom: 0;
+}
+
+.s-clear {
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.s-clear:hover {
+  background: var(--accent-soft);
+}
+
+/* linha de item (resultado, sugestão ou busca recente) */
+.s-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 9px 8px;
+  border-radius: 12px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.s-row:hover {
+  background: var(--bg-1);
+}
+
+.s-row:active {
+  background: var(--bg-2);
+}
+
+.s-row-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.s-ico {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.s-ico .ico {
+  width: 16px;
+  height: 16px;
+}
+
+.s-thumb {
+  width: 46px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex: none;
+  background: var(--bg-2);
+  box-shadow: var(--shadow-card);
+}
+
+.s-main {
+  flex: 1;
+  min-width: 0;
+  display: block;
+}
+
+.s-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.s-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.s-end {
+  color: var(--text-dim);
+  flex: none;
+  display: grid;
+  place-items: center;
+}
+
+.s-end .ico {
+  width: 16px;
+  height: 16px;
+}
+
+.s-del {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  flex: none;
+  border: 0;
+  background: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.s-del:hover {
+  color: var(--danger);
+  background: rgba(255, 92, 92, 0.08);
+}
+
+.s-del .ico {
+  width: 15px;
+  height: 15px;
+}
+
+/* termo digitado em destaque dentro do título */
+.s-row mark {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 4px;
+  padding: 0 1px;
+}
+
+/* chips de categoria (aqui podem quebrar linha) */
+.s-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip-ico {
+  display: inline-flex;
+}
+
+.chip-ico .ico {
+  width: 12px;
+  height: 12px;
+}
+
+/* skeleton das sugestões enquanto o catálogo carrega */
+.s-skel {
+  height: 58px;
+  border-radius: 12px;
+  margin: 6px 0;
+  background: linear-gradient(100deg, #1a1a1a 40%, #242424 50%, #1a1a1a 60%);
+  background-size: 200% 100%;
+  animation: shimmer 1.3s infinite linear;
+}
+
+.s-error {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 8px 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-body {
+    animation: none;
+  }
+}

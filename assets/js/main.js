@@ -23,6 +23,8 @@ const I = (paths, fill = false) =>
 
 const ICONS = {
   search: I('<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>'),
+  chevronLeft: I('<polyline points="15 18 9 12 15 6"/>'),
+  clock: I('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>'),
   home: I('<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h5v-6h4v6h5V9.5"/>'),
   menu: I('<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>'),
   close: I('<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>'),
@@ -176,12 +178,12 @@ function renderHeader() {
       <span>port<span class="b2">-droid</span></span>
     </a>
     <nav class="nav" aria-label="Navegação principal">${navLinks}</nav>
-    <form class="header-search" action="./catalog.html" method="get" role="search">
+    <!-- Tocar no campo/ícone abre a tela de busca dedicada, como um app nativo -->
+    <a class="header-search" href="./search.html" role="search" aria-label="Abrir a tela de busca">
       ${ICONS.search}
-      <input type="search" name="q" placeholder="Buscar jogos…" aria-label="Buscar jogos no catálogo" autocomplete="off">
-    </form>
-    <!-- No mobile a busca fica no app bar; no desktop usa o campo de texto -->
-    <a class="icon-btn header-search-btn" href="./catalog.html#buscar" aria-label="Buscar jogos">${ICONS.search}</a>
+      <span class="hs-text">Buscar jogos…</span>
+    </a>
+    <a class="icon-btn header-search-btn" href="./search.html" aria-label="Abrir a tela de busca">${ICONS.search}</a>
   </div>`;
 }
 
@@ -191,7 +193,7 @@ function renderHeader() {
 const TABS = [
   { id: "home", href: "./index.html", label: "Início", icon: "home" },
   { id: "catalog", href: "./catalog.html", label: "Jogos", icon: "pad" },
-  { id: "buscar", href: "./catalog.html#buscar", label: "Buscar", icon: "search" },
+  { id: "buscar", href: "./search.html", label: "Buscar", icon: "search" },
   { id: "about", href: "./about.html", label: "Canal", icon: "youtube" },
 ];
 
@@ -200,11 +202,14 @@ function activeTab() {
   if (page === "home") return "home";
   if (page === "about") return "about";
   if (page === "game") return "catalog";
+  if (page === "search") return "buscar";
   if (page === "catalog") return location.hash === "#buscar" ? "buscar" : "catalog";
   return "";
 }
 
 function renderBottomNav() {
+  /* A tela de busca é uma "atividade" de tela cheia, sem barras de navegação */
+  if (document.body.dataset.page === "search") return;
   if ($("#bottomNav")) return;
   const nav = document.createElement("nav");
   nav.className = "bottom-nav";

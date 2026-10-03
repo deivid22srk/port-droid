@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0D0D0D">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="port-droid">
+  <meta name="robots" content="noindex">
+  <title>Buscar — port-droid</title>
+  <meta name="description" content="Busque ports de jogos para Android por nome, categoria, tag ou port original.">
+
+  <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.json">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/pages.css">
+</head>
+<body data-page="search">
+  <!-- Tela de busca dedicada, como uma "SearchActivity" de app Android:
+       tela cheia, sem header/footer/nav bar, com voltar e campo focado. -->
+  <div class="search-screen">
+    <div class="search-topbar">
+      <button type="button" class="icon-btn" id="backBtn" aria-label="Voltar">
+        <span data-ico="chevronLeft"></span>
+      </button>
+      <div class="search-field search-field-app">
+        <span data-ico="search"></span>
+        <label class="visually-hidden" for="searchInput">Buscar jogos</label>
+        <input type="search" id="searchInput" placeholder="Buscar por nome, tag ou port…"
+               autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">
+        <button type="button" class="search-clear" id="searchClear" aria-label="Limpar busca">
+          <span data-ico="close"></span>
+        </button>
+      </div>
+    </div>
+
+    <main class="search-body" id="searchBody">
+      <!-- Estado inicial: buscas recentes + sugestões -->
+      <section id="homeState">
+        <div class="s-section" id="recentsWrap" hidden>
+          <div class="s-title-row">
+            <h2 class="s-title">Buscas recentes</h2>
+            <button type="button" class="s-clear" id="clearRecents">Limpar</button>
+          </div>
+          <div id="recentsList"></div>
+        </div>
+
+        <div class="s-section">
+          <h2 class="s-title">Explorar categorias</h2>
+          <div class="chips-scroll s-cats" id="suggestCats"></div>
+        </div>
+
+        <div class="s-section">
+          <h2 class="s-title">Populares agora</h2>
+          <div id="suggestList">
+            <div class="s-skel"></div>
+            <div class="s-skel"></div>
+            <div class="s-skel"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Estado de resultados -->
+      <section id="resultsState" hidden>
+        <p class="result-count" id="resultCount" aria-live="polite"></p>
+        <div id="resultsList"></div>
+      </section>
+
+      <!-- Nada encontrado -->
+      <div class="empty-state" id="emptyState">
+        <span data-ico="search"></span>
+        <h3>Nenhum resultado</h3>
+        <p id="emptyMsg">Não achamos nada com esse termo. Tente outro nome ou explore o catálogo completo.</p>
+        <a class="btn btn-ghost" href="./catalog.html">Explorar catálogo</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="./assets/js/main.js" defer></script>
+  <script src="./assets/js/search.js" defer></script>
+</body>
+</html>

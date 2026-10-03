@@ -20,7 +20,8 @@ Android, organizados pelo canal [Hail Games (@Hail-Games1)](https://www.youtube.
 
 - **Home** com hero, destaque, *Novos ports*, *Mais baixados* e *Categorias* (tudo dinâmico a partir do `games.json`)
 - **Experiência estilo aplicativo**: navigation bar inferior fixa com 4 abas (Início · Jogos · Buscar · Canal), app bar compacta com busca, splash screen na abertura, transição suave entre telas e pill de "Instalar app" — no desktop (≥900px) volta à navegação superior tradicional
-- **Catálogo** com busca em tempo real (a aba *Buscar* já abre com o campo focado), filtros (categoria, chipset, desempenho), ordenação e estado sincronizado na URL
+- **Tela de busca dedicada**: tocar no ícone de busca, no campo do app bar ou na aba *Buscar* abre uma tela cheia de busca estilo app Android — campo já focado, buscas recentes salvas no aparelho, sugestões de categorias/populares, resultados ao vivo com o termo destacado e Enter abre o primeiro resultado
+- **Catálogo** com busca em tempo real e filtros (categoria, chipset, desempenho), ordenação e estado sincronizado na URL
 - **Página do jogo** com banner, galeria + lightbox, requisitos mínimos/recomendados, instruções de instalação, créditos dos autores e botões "Baixar APK" / "Ver no GitHub"
 - **Sobre o canal** com links do YouTube e do Telegram
 - **Aviso legal** completo (sem afiliação, sem hospedagem de arquivos, contato para remoção)
