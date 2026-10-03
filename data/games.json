@@ -161,6 +161,74 @@
         "game": "Skate 3 © Electronic Arts / Black Box"
       },
       "license": "Consulte o repositório"
+    },
+    {
+      "id": "csgo-mobile",
+      "title": "Counter-Strike: Global Offensive",
+      "port": "CS:GO Mobile",
+      "original": "PC (2012)",
+      "categories": ["acao"],
+      "tags": ["Toque", "FPS", "Valve"],
+      "chipsets": [],
+      "performance": "medio",
+      "apkSize": "73 MB",
+      "storage": "Em breve",
+      "updated": "2026-10-03",
+      "dateAdded": "2026-10-03",
+      "status": "ativo",
+      "statusLabel": "Ativo",
+      "featured": false,
+      "downloads": 0,
+      "cover": "assets/img/games/csgo-mobile/cover.webp",
+      "banner": "assets/img/games/csgo-mobile/banner.webp",
+      "screenshots": [
+        "assets/img/games/csgo-mobile/shot-1.webp",
+        "assets/img/games/csgo-mobile/shot-2.webp",
+        "assets/img/games/csgo-mobile/shot-3.webp"
+      ],
+      "videoId": "lW37-4OVds0",
+      "shortDescription": "Counter-Strike: Global Offensive no Android como port não oficial da comunidade, com controles de toque completos — menu de compra, troca de armas, C4 e console direto na tela.",
+      "description": [
+        "CS:GO Mobile traz Counter-Strike: Global Offensive, o FPS tático da Valve lançado em 2012, para o Android como um port não oficial mantido pela comunidade. A distribuição é um APK único de cerca de 73 MB e a referência pública do projeto é o vídeo “100% AI 移植之安卓版 CSGO” no Bilibili, que documenta a abordagem do port em formato de demonstração.",
+        "Os controles de toque ficam na tela e cobrem o jogo inteiro: joystick de movimento, botão de tiro, menu de compra (Buy), troca de armas (Primar, Pistol, Knife, Utility), C4, agachar, pular, usar, inspecionar, recarregar e até o Console — tudo visível no gameplay capturado pelo canal Hail Games, embedado nesta página.",
+        "Importante: trata-se de um port de fã, sem qualquer vínculo com a Valve. Requisitos, desempenho e compatibilidade variam por aparelho e ainda estão sendo mapeados pelo canal — as tabelas abaixo serão atualizadas conforme os testes. O APK é distribuído pelo link oficial do canal no MediaFire; não há repositório público deste port."
+      ],
+      "requirements": {
+        "minimo": {
+          "Sistema": "Android — versão mínima a confirmar (Em breve)",
+          "Armazenamento": "APK de ~73 MB + espaço livre para os dados do jogo"
+        },
+        "recomendado": {
+          "Controle": "Toque — HUD completo na tela, já confirmado no gameplay",
+          "Requisitos completos": "Em breve — sendo mapeados nos testes do canal"
+        }
+      },
+      "chipsetRecommended": "A confirmar — consulte o gameplay no canal",
+      "controls": [
+        "HUD de toque completo: movimento, mira, tiro, agachar, pular e usar",
+        "Menu de compra (Buy), troca de armas (Primar, Pistol, Knife, Utility) e C4 na tela",
+        "Menus do jogo acessíveis por toque, incluindo Console, Menu e Team"
+      ],
+      "install": [
+        "Baixe o APK CSGO_MOBILE.apk (~73 MB) no link de download desta página (MediaFire).",
+        "Permita a instalação de apps de fontes desconhecidas quando o Android pedir.",
+        "Instale o APK e abra o jogo — os controles de toque já vêm configurados.",
+        "Dúvidas de configuração? Assista ao gameplay e tutorial no canal Hail Games (vídeo embedado nesta página)."
+      ],
+      "notes": "Port da comunidade, sem afiliação com a Valve. Requisitos e desempenho ainda sendo mapeados — classificação de desempenho provisória (Médio). Counter-Strike: Global Offensive © Valve. A capa e o banner deste port são arte de fã, não material oficial.",
+      "links": {
+        "download": "https://www.mediafire.com/file/by0086kljbfvihz/CSGO_MOBILE.apk/file?dkey=bo1zc951cmu&r=1378",
+        "tutorial": "https://www.youtube.com/@Hail-Games1",
+        "reference": "https://b23.tv/w9TVFoS"
+      },
+      "credit": {
+        "port": "Comunidade — port não oficial (referência: vídeo no Bilibili)",
+        "portUrl": "https://b23.tv/w9TVFoS",
+        "original": "Valve — Counter-Strike: Global Offensive",
+        "originalUrl": "https://www.counter-strike.net",
+        "game": "Counter-Strike: Global Offensive © Valve"
+      },
+      "license": "Port não oficial — todos os direitos do jogo pertencem à Valve"
     }
   ]
 }

@@ -69,7 +69,10 @@
   });
   ["#btnGithub", "#btnGithubSide"].forEach((sel) => {
     const a = $(sel);
-    if (a) a.href = g.links?.github || "#";
+    if (a) {
+      a.href = g.links?.github || "#";
+      a.classList.toggle("hidden", !g.links?.github); // ports sem repositório ficam sem o botão
+    }
   });
   if (g.links?.site) {
     const b = $("#btnSite");
@@ -111,7 +114,7 @@
 
   /* ------------------------------------------------------------- Sidebar */
   $("#infoList").innerHTML = `
-    <div><dt>Versão</dt><dd class="accent">v${esc(g.version || "—")}</dd></div>
+    <div><dt>Versão</dt><dd class="accent">${g.version ? `v${esc(g.version)}` : "Em breve"}</dd></div>
     <div><dt>APK</dt><dd>${esc(g.apkSize || "—")}</dd></div>
     <div><dt>Armazenamento</dt><dd>${esc(g.storage || "—")}</dd></div>
     <div><dt>Chipset recomendado</dt><dd>${esc(g.chipsetRecommended || "—")}</dd></div>
