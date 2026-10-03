@@ -16,10 +16,13 @@
   const state = {
     q: (params.get("q") || "").trim(),
     cat: params.get("cat") || "",
+    type: params.get("type") === "web" || params.get("type") === "android" ? params.get("type") : "",
     chip: params.get("chip") || "",
     perf: params.get("perf") || "",
     sort: params.get("sort") || "recentes",
   };
+
+  const gameType = (g) => (g.type === "web" ? "web" : "android"); // ausente = Android (compat com entradas antigas)
 
   let games = [];
 
@@ -27,6 +30,7 @@
   const searchInput = $("#searchInput");
   const clearBtn = $("#searchClear");
   const catChips = $("#catChips");
+  const typeTabs = $("#typeTabs");
   const chipSelect = $("#chipSelect");
   const perfSelect = $("#perfSelect");
   const sortSelect = $("#sortSelect");
@@ -34,6 +38,22 @@
   const emptyEl = $("#emptyState");
 
   /* -------------------------------------------------------------- Filtros */
+  function buildTypeTabs() {
+    const n = { android: 0, web: 0 };
+    games.forEach((g) => n[gameType(g)]++);
+    const tabs = [
+      ["", "Todos", games.length],
+      ["android", "Android", n.android],
+      ["web", "Web", n.web],
+    ];
+    typeTabs.innerHTML = tabs
+      .map(
+        ([id, label, count]) =>
+          `<button type="button" class="type-tab ${state.type === id ? "active" : ""}" data-type="${id}" ${state.type === id ? 'aria-pressed="true"' : 'aria-pressed="false"'}>${label} <span class="tt-n">${count}</span></button>`
+      )
+      .join("");
+  }
+
   function buildFilters() {
     /* chips de categoria (com contagem) */
     const counts = {};
@@ -73,6 +93,7 @@
   function filtered() {
     const q = state.q.toLowerCase();
     let list = games.filter((g) => {
+      if (state.type && gameType(g) !== state.type) return false;
       if (state.cat && !(g.categories || []).includes(state.cat)) return false;
       if (state.chip && !(g.chipsets || []).includes(state.chip)) return false;
       if (state.perf && g.performance !== state.perf) return false;
@@ -117,9 +138,15 @@
 
     emptyEl.classList.toggle("show", !list.length);
 
+    /* chipset/desempenho são conceitos de APK — sem sentido nos ports web */
+    const webMode = state.type === "web";
+    chipSelect.hidden = webMode;
+    perfSelect.hidden = webMode;
+
     if (updateUrl) {
       const p = new URLSearchParams();
       if (state.q) p.set("q", state.q);
+      if (state.type) p.set("type", state.type);
       if (state.cat) p.set("cat", state.cat);
       if (state.chip) p.set("chip", state.chip);
       if (state.perf) p.set("perf", state.perf);
@@ -145,6 +172,15 @@
     apply();
   });
 
+  /* abas Todos / Android / Web (delegação de clique) */
+  typeTabs.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-type]");
+    if (!btn || btn.dataset.type === state.type) return;
+    state.type = btn.dataset.type;
+    buildTypeTabs();
+    apply();
+  });
+
   chipSelect.addEventListener("change", () => {
     state.chip = chipSelect.value;
     apply();
@@ -161,9 +197,10 @@
   });
 
   $("#resetFilters").addEventListener("click", () => {
-    Object.assign(state, { q: "", cat: "", chip: "", perf: "", sort: "recentes" });
+    Object.assign(state, { q: "", cat: "", type: "", chip: "", perf: "", sort: "recentes" });
     searchInput.value = "";
     searchInput.parentElement.classList.remove("has-value");
+    buildTypeTabs();
     buildFilters();
     apply();
   });
@@ -182,6 +219,7 @@
 
   searchInput.value = state.q;
   searchInput.parentElement.classList.toggle("has-value", !!state.q);
+  buildTypeTabs();
   buildFilters();
   apply(false);
 

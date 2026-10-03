@@ -13,9 +13,24 @@
       "title": "Sonic Unleashed",
       "port": "UnleashedRecomp Android",
       "original": "Xbox 360 (2008)",
-      "categories": ["plataforma", "acao", "aventura"],
-      "tags": ["Snapdragon", "Adreno", "Mali", "Controle", "Toque", "Mods", "Vulkan"],
-      "chipsets": ["Snapdragon", "Mali"],
+      "categories": [
+        "plataforma",
+        "acao",
+        "aventura"
+      ],
+      "tags": [
+        "Snapdragon",
+        "Adreno",
+        "Mali",
+        "Controle",
+        "Toque",
+        "Mods",
+        "Vulkan"
+      ],
+      "chipsets": [
+        "Snapdragon",
+        "Mali"
+      ],
       "performance": "pesado",
       "version": "0.6.0",
       "apkSize": "63 MB",
@@ -83,16 +98,31 @@
         "originalUrl": "https://github.com/hedge-dev/UnleashedRecomp",
         "game": "Sonic Unleashed © SEGA / Sonic Team"
       },
-      "license": "GPL-3.0"
+      "license": "GPL-3.0",
+      "type": "android"
     },
     {
       "id": "skate-3",
       "title": "Skate 3",
       "port": "Skate 3 Mobile",
       "original": "Xbox 360 (2010)",
-      "categories": ["esporte"],
-      "tags": ["Snapdragon", "Unisoc", "Mali", "Controle", "Toque", "Vulkan", "Handheld"],
-      "chipsets": ["Snapdragon", "Unisoc", "Mali"],
+      "categories": [
+        "esporte"
+      ],
+      "tags": [
+        "Snapdragon",
+        "Unisoc",
+        "Mali",
+        "Controle",
+        "Toque",
+        "Vulkan",
+        "Handheld"
+      ],
+      "chipsets": [
+        "Snapdragon",
+        "Unisoc",
+        "Mali"
+      ],
       "performance": "medio",
       "version": "2.1.0",
       "apkSize": "38 MB",
@@ -160,15 +190,22 @@
         "originalUrl": "https://github.com/mchughalex/skate3recomp",
         "game": "Skate 3 © Electronic Arts / Black Box"
       },
-      "license": "Consulte o repositório"
+      "license": "Consulte o repositório",
+      "type": "android"
     },
     {
       "id": "csgo-mobile",
       "title": "Counter-Strike: Global Offensive",
       "port": "CS:GO Mobile",
       "original": "PC (2012)",
-      "categories": ["acao"],
-      "tags": ["Toque", "FPS", "Valve"],
+      "categories": [
+        "acao"
+      ],
+      "tags": [
+        "Toque",
+        "FPS",
+        "Valve"
+      ],
       "chipsets": [],
       "performance": "medio",
       "apkSize": "73 MB",
@@ -228,15 +265,24 @@
         "originalUrl": "https://www.counter-strike.net",
         "game": "Counter-Strike: Global Offensive © Valve"
       },
-      "license": "Port não oficial — todos os direitos do jogo pertencem à Valve"
+      "license": "Port não oficial — todos os direitos do jogo pertencem à Valve",
+      "type": "android"
     },
     {
       "id": "lost-odyssey-recomp",
       "title": "Lost Odyssey",
       "port": "Lost Odyssey Recomp",
       "original": "Xbox 360 (2007)",
-      "categories": ["rpg"],
-      "tags": ["Toque", "Controle", "Vulkan", "Recomp", "Experimental"],
+      "categories": [
+        "rpg"
+      ],
+      "tags": [
+        "Toque",
+        "Controle",
+        "Vulkan",
+        "Recomp",
+        "Experimental"
+      ],
       "chipsets": [],
       "version": "0.8.0",
       "apkSize": "44 MB",
@@ -300,7 +346,94 @@
         "originalUrl": "https://mistwalker.co.jp",
         "game": "Lost Odyssey © Mistwalker / Microsoft"
       },
-      "license": "GPL-3.0"
+      "license": "GPL-3.0",
+      "type": "android"
+    },
+    {
+      "id": "halo-ce",
+      "type": "web",
+      "title": "Halo: Combat Evolved",
+      "port": "Halo CE Mobile (web)",
+      "original": "Xbox (2001)",
+      "categories": [
+        "acao",
+        "aventura"
+      ],
+      "tags": [
+        "FPS",
+        "Web",
+        "WASM",
+        "Toque",
+        "Controle",
+        "Multiplayer",
+        "Sci-fi"
+      ],
+      "chipsets": [],
+      "performance": "medio",
+      "version": "12d9e05",
+      "apkSize": "",
+      "storage": "~2 GB (dados do jogo no navegador)",
+      "updated": "2026-10-02",
+      "dateAdded": "2026-10-03",
+      "status": "web",
+      "statusLabel": "Web (navegador)",
+      "featured": true,
+      "downloads": 0,
+      "cover": "./assets/img/games/halo-ce/cover.webp",
+      "banner": "./assets/img/games/halo-ce/banner.webp",
+      "screenshots": [
+        "./assets/img/games/halo-ce/shot-1.webp",
+        "./assets/img/games/halo-ce/shot-2.webp",
+        "./assets/img/games/halo-ce/shot-3.webp"
+      ],
+      "videoId": "",
+      "shortDescription": "Halo CE completo direto no navegador do celular: campanha, System Link online e controles de toque — basta a sua imagem de disco do jogo.",
+      "description": [
+        "Halo CE Mobile leva o Halo: Combat Evolved original do Xbox para o navegador, compilado em WebAssembly. É um port da decompilação do jogo (build 2342 do Xbox), com controles de toque com layout editável, suporte a controle Bluetooth/USB, partidas online por System Link com matchmaking e chat, co-op remoto (um amigo entra como jogador 2 do próprio aparelho) e conteúdo customizado como câmera em terceira pessoa e regras de jogo alternativas.",
+        "O port roda inteiro dentro do port-droid: você abre o player, escolhe a sua imagem de disco e joga sem sair do site. Nada é baixado de servidores externos e nenhum arquivo do jogo é distribuído aqui — o jogador usa a própria cópia em .iso ou .xiso (qualquer versão do jogo funciona).",
+        "Na primeira execução o jogo extrai os mapas da imagem de disco (cerca de 1,8 GB) para o armazenamento privado do navegador (OPFS) e a partir daí abre direto. Dá para instalar mais de uma imagem (disco multiplayer, jogo completo ou modded) e escolher qual usar, com saves, configurações e cache de shaders separados por cópia."
+      ],
+      "requirements": {
+        "minimo": {
+          "Navegador": "Chrome, Edge ou Firefox recentes (Android) / Safari 17+ (iOS)",
+          "Recursos": "WebGL 2 com OffscreenCanvas, SharedArrayBuffer e OPFS",
+          "Armazenamento": "~2 GB livres para os dados do jogo",
+          "Jogo": "Imagem de disco Xbox própria (.iso ou .xiso) do Halo: Combat Evolved"
+        },
+        "recomendado": {
+          "Navegador": "Chrome atualizado no Android",
+          "Controles": "Controle Bluetooth/USB (Xbox, PlayStation, Switch Pro) ou toque com layout editável",
+          "Tela": "Orientação paisagem para jogar"
+        }
+      },
+      "chipsetRecommended": "",
+      "controls": [
+        "Toque: controles na tela com layouts prontos e editor de layout",
+        "Controle: Xbox, PlayStation, Switch Pro, MFi e genéricos via Bluetooth ou USB",
+        "Menu do jogo (canto superior esquerdo): sensibilidade, layout de toque, som e taxa de quadros",
+        "Gesto de voltar do sistema abre o menu do jogo"
+      ],
+      "install": [
+        "Confira os requisitos do navegador na seção acima (o player do port-droid faz o teste automático)",
+        "Tenha em mãos a imagem de disco Xbox do jogo (.iso ou .xiso) — o port não inclui dados do jogo",
+        "Toque em Jogar no navegador e aguarde o runner carregar",
+        "Escolha a imagem de disco (botão Selecionar ISO do player ou o botão dentro do runner)",
+        "Aguarde a cópia dos mapas (~1,8 GB, feita uma única vez) e toque em Play"
+      ],
+      "notes": "O jogo roda 100% no navegador (WebAssembly). Os dados ficam no armazenamento privado do site (OPFS) no seu aparelho — limpar os dados do navegador apaga os mapas e os saves. Nenhum arquivo é enviado para servidores. Projeto de fãs sem afiliação com a Microsoft; use apenas a cópia do jogo que você possui.",
+      "links": {
+        "play": "./halo-ce/index.html",
+        "github": "https://github.com/fucktrevor/HCE-Mobile",
+        "reference": "https://fucktrevor.github.io/HCE-Mobile/"
+      },
+      "credit": {
+        "port": "fucktrevor (Halo CE Mobile)",
+        "portUrl": "https://github.com/fucktrevor/HCE-Mobile",
+        "original": "Microsoft / 343 Industries / Bungie",
+        "originalUrl": "https://www.halowaypoint.com",
+        "game": "Decompilação: punpckhdq/halo e bnunu/halo-1 · Port universal: cybersecurity/halo-ce-universal · Licença CC0-1.0"
+      },
+      "license": "CC0-1.0"
     }
   ]
 }
