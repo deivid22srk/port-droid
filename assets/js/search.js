@@ -227,6 +227,14 @@
     if (e.persisted) render();
   });
 
+  /* elevação da topbar ao rolar (sombra sutil, cara de app) */
+  const topbar = $(".search-topbar");
+  window.addEventListener(
+    "scroll",
+    () => topbar.classList.toggle("scrolled", window.scrollY > 6),
+    { passive: true }
+  );
+
   /* ---------------------------------------------------------------- Boot */
   /* foco e buscas recentes primeiro: não dependem da rede (teclado sobe já) */
   input.focus({ preventScroll: true });

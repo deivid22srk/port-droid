@@ -1274,13 +1274,22 @@
   }
 }
 
+/* sem pull-to-refresh/rebote na tela de busca (comportamento de app) */
+body[data-page="search"] {
+  overscroll-behavior-y: contain;
+}
+
 .search-screen {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
 
-/* topbar fixa: voltar + campo (com respiro da notch via safe-area) */
+/* topbar fixa: voltar + campo (com respiro da notch via safe-area).
+   Fundo SÓLIDO de propósito: no Android edge-to-edge a status bar é
+   transparente sobre a página — translucidez/blur deixariam o conteúdo
+   "vazar" atrás dela ao rolar. O padding-top garante que o campo fique
+   SEMPRE abaixo da status bar, parado ou com rolagem. */
 .search-topbar {
   position: sticky;
   top: 0;
@@ -1288,11 +1297,15 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: calc(10px + env(safe-area-inset-top)) 14px 10px;
-  background: rgba(13, 13, 13, 0.94);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  padding: calc(10px + env(safe-area-inset-top, 0px)) 14px 10px;
+  background: var(--bg-0);
   border-bottom: 1px solid var(--border);
+  transition: box-shadow 200ms ease;
+}
+
+/* elevação sutil quando a página está rolada (cara de app) */
+.search-topbar.scrolled {
+  box-shadow: 0 12px 28px -14px rgba(0, 0, 0, 0.65);
 }
 
 .search-field-app {
