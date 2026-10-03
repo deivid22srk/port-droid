@@ -229,6 +229,78 @@
         "game": "Counter-Strike: Global Offensive © Valve"
       },
       "license": "Port não oficial — todos os direitos do jogo pertencem à Valve"
+    },
+    {
+      "id": "lost-odyssey-recomp",
+      "title": "Lost Odyssey",
+      "port": "Lost Odyssey Recomp",
+      "original": "Xbox 360 (2007)",
+      "categories": ["rpg"],
+      "tags": ["Toque", "Controle", "Vulkan", "Recomp", "Experimental"],
+      "chipsets": [],
+      "version": "0.8.0",
+      "apkSize": "44 MB",
+      "storage": "Vários GB livres (dados dos 4 discos do jogo)",
+      "updated": "2026-10-03",
+      "dateAdded": "2026-10-03",
+      "status": "ativo",
+      "statusLabel": "Experimental (dev)",
+      "featured": true,
+      "downloads": 64,
+      "cover": "assets/img/games/lost-odyssey-recomp/cover.webp",
+      "banner": "assets/img/games/lost-odyssey-recomp/banner.webp",
+      "screenshots": [
+        "assets/img/games/lost-odyssey-recomp/shot-1.webp",
+        "assets/img/games/lost-odyssey-recomp/shot-2.webp",
+        "assets/img/games/lost-odyssey-recomp/shot-3.webp"
+      ],
+      "videoId": null,
+      "shortDescription": "Lost Odyssey (Xbox 360) no Android via recompilação estática — runtime ARM64 experimental da v0.8.0, com controles de toque, gamepad e importador integrado. Build de desenvolvimento.",
+      "description": [
+        "Lost Odyssey Recomp é um port não oficial e experimental de Lost Odyssey — o RPG da Mistwalker para Xbox 360 (2007) — através de recompilação estática: o jogo roda como código nativo ARM64, sem emulação de console. O projeto é mantido por freefrank sob licença GPL-3.0 e já soma centenas de estrelas no GitHub, com versões para Windows, Linux e macOS além do runtime Android.",
+        "O runtime Android ARM64 é experimental e usa SDL com atividade Android própria, controles de toque na tela com layout editável (arrastar, salvar, resetar e ocultar cada botão) e suporte a gamepads físicos — conectar um controle oculta os botões de toque automaticamente. Nos testes do desenvolvedor, o app carregou os recursos, reproduziu o vídeo de abertura e chegou à primeira batalha no tablet de desenvolvimento. É um build de desenvolvimento/diagnóstico anexado à release v0.8.0: o suporte oficial ao Android foi adiado por causa de um bug upstream da Qualcomm.",
+        "Importante: o port está em teste inicial — aberturas e cenas selecionadas foram testadas, mas não há um playthrough completo, e problemas de renderização e estabilidade são esperados. O projeto não inclui os arquivos do jogo: você precisa do dump da sua própria cópia legal de Lost Odyssey (conjunto de 4 discos para Xbox 360 — pasta extraída, default.xex, ISO XDVDFS ou dados GOD). No desktop o projeto é bem mais maduro, com D3D12/Vulkan/Metal, DLSS/FSR, HDR experimental e menu de debug."
+      ],
+      "requirements": {
+        "minimo": {
+          "Sistema": "Android (ARM64) — build experimental de desenvolvimento",
+          "Mídia": "Seus próprios arquivos de Lost Odyssey para Xbox 360 (pasta extraída, default.xex, ISO XDVDFS ou GOD)",
+          "Armazenamento": "Vários GB livres para os dados dos 4 discos"
+        },
+        "recomendado": {
+          "Controle": "Gamepad USB/Bluetooth (SDL) — os controles de toque ficam ocultos ao conectar; dá para usar os dois juntos em Show touch controls",
+          "Observação": "Android é experimental: trechos iniciais testados; bug upstream da Qualcomm adiou o suporte oficial na v0.8.0"
+        }
+      },
+      "chipsetRecommended": "A confirmar — build experimental; bug upstream da Qualcomm adiou o suporte oficial ao Android",
+      "controls": [
+        "Controles de toque na tela com editor de layout: arrastar, salvar, resetar e mostrar/ocultar cada botão",
+        "Ajustes de tamanho e opacidade dos controles nas Controller settings",
+        "Gamepads USB/Bluetooth via SDL — conectar um controle oculta os botões de toque (CTRL continua disponível)",
+        "Opção Show touch controls para usar toque e controle físico juntos"
+      ],
+      "install": [
+        "Baixe o APK experimental (LostOdysseyRecomp-android-arm64-v0.8.0.apk, ~44 MB) na página de Releases do repositório oficial.",
+        "Permita a instalação de apps de fontes desconhecidas quando o Android pedir.",
+        "Abra o app: o importador integrado aparece quando nenhuma instalação do jogo é encontrada. Use Files/Folder para selecionar a pasta extraída do jogo, o default.xex, uma ISO XDVDFS ou dados GOD.",
+        "Escolha o idioma da interface, o idioma do jogo e as opções gráficas. Se não houver shaders pré-compilados para o renderizador, o app oferece o download — pular compila no próprio aparelho.",
+        "Adicione os demais discos e DLCs depois em Gameplay → Import discs & DLC. O Disco 1 é obrigatório para iniciar e não se deve misturar edições do conjunto de 4 discos."
+      ],
+      "notes": "Port experimental em teste inicial (sem playthrough completo validado). Mantenha cópias dos seus saves. Créditos: freefrank e contribuidores (dj5927, Xarishark e outros). Lost Odyssey © Mistwalker / Microsoft. O projeto não distribui assets do jogo.",
+      "links": {
+        "github": "https://github.com/freefrank/LostOdysseyRecomp",
+        "releases": "https://github.com/freefrank/LostOdysseyRecomp/releases",
+        "download": "https://github.com/freefrank/LostOdysseyRecomp/releases/download/v0.8.0/LostOdysseyRecomp-android-arm64-v0.8.0.apk",
+        "tutorial": "https://www.youtube.com/@Hail-Games1"
+      },
+      "credit": {
+        "port": "freefrank e contribuidores — Lost Odyssey Recomp",
+        "portUrl": "https://github.com/freefrank/LostOdysseyRecomp",
+        "original": "Mistwalker / feelplus — Lost Odyssey (Xbox 360)",
+        "originalUrl": "https://mistwalker.co.jp",
+        "game": "Lost Odyssey © Mistwalker / Microsoft"
+      },
+      "license": "GPL-3.0"
     }
   ]
 }

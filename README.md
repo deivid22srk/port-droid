@@ -176,6 +176,9 @@ funciona nos dois modos sem alterar nada.
 - **Counter-Strike: Global Offensive** — CS:GO Mobile, port não oficial da
   comunidade ([referência no Bilibili](https://b23.tv/w9TVFoS)), distribuído
   como APK pelo canal · Counter-Strike © Valve
+- **Lost Odyssey** — [Lost Odyssey Recomp](https://github.com/freefrank/LostOdysseyRecomp),
+  port experimental de [freefrank](https://github.com/freefrank) via recompilação
+  estática · GPL-3.0 · Lost Odyssey © Mistwalker / Microsoft
 
 ## 📄 Licença
 
