@@ -23,6 +23,7 @@ Android, organizados pelo canal [Hail Games (@Hail-Games1)](https://www.youtube.
 - **Tela de busca dedicada**: tocar no ícone de busca, no campo do app bar ou na aba *Buscar* abre uma tela cheia de busca estilo app Android — campo já focado, buscas recentes salvas no aparelho, sugestões de categorias/populares, resultados ao vivo com o termo destacado e Enter abre o primeiro resultado
 - **Catálogo** com busca em tempo real e filtros (categoria, chipset, desempenho), ordenação e estado sincronizado na URL
 - **Ports web (no branch feat/web-ports)**: jogos que rodam no próprio navegador, com o **player do port-droid** (`play/`) — nossa interface em volta do runner embutido, atalho "Selecionar ISO", teste automático do navegador, tela cheia e isolamento COOP/COEP via `play/coi.js` (SharedArrayBuffer) sem afetar o resto do site
+- **Android separado dos ports Web**: o catálogo tem abas *Todos / Android / Web* (`?type=`), a home tem trilho próprio "Ports Web" e os resultados da busca trazem um selo **Web** nos ports de navegador — a busca continua retornando os dois tipos juntos
 - **Página do jogo** com banner, galeria + lightbox, requisitos mínimos/recomendados, instruções de instalação, créditos dos autores e botões "Baixar APK" / "Ver no GitHub" (ports web trocam por "Jogar no navegador")
 - **Sobre o canal** com links do YouTube e do Telegram
 - **Aviso legal** completo (sem afiliação, sem hospedagem de arquivos, contato para remoção)

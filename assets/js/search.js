@@ -91,11 +91,13 @@
     const sub = [g.port, g.categories?.[0] ? catLabel(g.categories[0]) : "", g.downloads ? `${fmtCompact(g.downloads)} downloads` : ""]
       .filter(Boolean)
       .join(" · ");
+    /* busca mista (Android + Web): selo identifica o que roda no navegador */
+    const tag = g.type === "web" ? ` <span class="s-tag">Web</span>` : "";
     return `
     <a class="s-row" href="./game.html?id=${encodeURIComponent(g.id)}">
       <img class="s-thumb" src="${esc(g.cover)}" alt="" width="46" height="60" loading="lazy" decoding="async">
       <span class="s-main">
-        <span class="s-label">${hl(g.title, q)}</span>
+        <span class="s-label">${hl(g.title, q)}${tag}</span>
         <span class="s-sub">${esc(sub)}</span>
       </span>
       <span class="s-end">${ICONS.arrow}</span>
