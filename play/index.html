@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0D0D0D">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="port-droid">
+  <meta name="robots" content="noindex">
+  <title>Jogar — port-droid</title>
+  <meta name="description" content="Player do port-droid: rode ports web no navegador com a nossa interface.">
+
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- crossorigin: os assets de fonte precisam de CORS (a página do player
+       roda com COEP require-corp para liberar o SharedArrayBuffer do jogo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet" crossorigin>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/pages.css">
+</head>
+<body data-page="play">
+  <!-- Player do port-droid: nossa interface ao redor do runner do port web.
+       A pasta play/ roda isolada (COOP/COEP via play/coi.js) para o jogo ter
+       SharedArrayBuffer, sem afetar o resto do site. -->
+  <div class="play-screen">
+    <div class="play-topbar">
+      <button type="button" class="icon-btn" id="playBack" aria-label="Voltar">
+        <span data-ico="chevronLeft"></span>
+      </button>
+      <div class="play-title">
+        <img id="playCover" src="../assets/img/logo.svg" alt="" width="30" height="40">
+        <div>
+          <strong id="playTitle">Carregando…</strong>
+          <span id="playSub">port-droid</span>
+        </div>
+      </div>
+      <button type="button" class="icon-btn hidden" id="playFullscreen" aria-label="Tela cheia">
+        <span data-ico="expand"></span>
+      </button>
+    </div>
+
+    <div class="play-stage" id="playStage">
+      <!-- Painel inicial (nossa interface): passos + testes do navegador -->
+      <section class="play-intro" id="playIntro">
+        <div class="play-hero">
+          <img id="playCoverBig" src="../assets/img/logo.svg" alt="" width="84" height="112">
+          <div>
+            <h1 id="playTitleBig">—</h1>
+            <p id="playSubBig">—</p>
+            <span class="chip chip-accent"><span data-ico="play"></span> Roda no navegador</span>
+          </div>
+        </div>
+
+        <div class="play-card">
+          <h2 class="s-title">Como funciona</h2>
+          <ol class="play-steps">
+            <li>Tenha em mãos a <strong>imagem de disco Xbox</strong> do jogo (<code>.iso</code> ou <code>.xiso</code>) — o port não inclui os dados do jogo;</li>
+            <li>Toque em <strong>Iniciar o jogo</strong> e aguarde o runner carregar;</li>
+            <li>Escolha a imagem de disco pelo botão <strong>Selecionar ISO</strong> (nosso atalho) ou dentro do runner;</li>
+            <li>Aguarde a única cópia dos mapas e jogue — na próxima vez abre direto.</li>
+          </ol>
+          <p class="play-note"><span data-ico="alert"></span> Nada é hospedado aqui e nenhum arquivo sai do seu aparelho: os dados do jogo ficam no armazenamento privado do navegador (OPFS). Limpar os dados do site apaga mapas e saves.</p>
+        </div>
+
+        <div class="play-card">
+          <h2 class="s-title">Seu navegador</h2>
+          <ul class="play-checks" id="supportChecks"></ul>
+          <p class="play-hint" id="supportHint"></p>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-play" id="startBtn">
+          <span data-ico="play"></span> Iniciar o jogo
+        </button>
+        <p class="play-backlink"><a id="playGameLink" href="../catalog.html">← Página do jogo</a></p>
+      </section>
+
+      <!-- Runner embutido (mesma origem, dentro de play/: ex. ./halo-ce/index.html) -->
+      <section class="play-run" id="playRun" hidden>
+        <iframe id="runnerFrame" title="Runner do port web"
+                allow="fullscreen; autoplay; gamepad; orientation-lock; cross-origin-isolated"
+                allowfullscreen></iframe>
+        <div class="play-tools" id="playTools">
+          <button type="button" class="btn btn-ghost btn-sm" id="pickIsoBtn">
+            <span data-ico="download"></span> Selecionar ISO
+          </button>
+          <span class="play-tools-hint">Primeira cópia dos mapas leva alguns minutos</span>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="../assets/js/main.js" defer></script>
+  <script src="play.js" defer></script>
+</body>
+</html>

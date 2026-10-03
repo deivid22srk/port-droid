@@ -61,12 +61,37 @@
     ...(g.tags || []).map((t) => `<span class="chip">${esc(t)}</span>`),
   ].join("");
 
-  /* Ações (botões principais e da sidebar apontam para os mesmos destinos) */
-  const dlUrl = g.links?.download || g.links?.releases || g.links?.github || "#";
-  ["#btnDownload", "#btnDownloadSide"].forEach((sel) => {
+  /* Ações (botões principais e da sidebar apontam para os mesmos destinos).
+     Ports web (type: "web") trocam "Baixar APK" por "Jogar no navegador" -> play/ */
+  const isWeb = g.type === "web";
+  const setAction = (sel, { label, icon }) => {
     const a = $(sel);
-    if (a) a.href = dlUrl;
-  });
+    if (!a) return;
+    const svg = a.querySelector("svg.ico");
+    if (svg && ICONS[icon]) svg.outerHTML = ICONS[icon];
+    const lbl = a.querySelector(".btn-label");
+    if (lbl) lbl.textContent = label;
+  };
+
+  if (isWeb) {
+    const playUrl = `./play/?id=${encodeURIComponent(g.id)}`;
+    ["#btnDownload", "#btnDownloadSide"].forEach((sel) => {
+      const a = $(sel);
+      if (!a) return;
+      a.href = playUrl;
+      a.removeAttribute("target");
+    });
+    setAction("#btnDownload", { label: "Jogar no navegador", icon: "play" });
+    setAction("#btnDownloadSide", { label: "Jogar agora", icon: "play" });
+  } else {
+    const dlUrl = g.links?.download || g.links?.releases || g.links?.github || "#";
+    ["#btnDownload", "#btnDownloadSide"].forEach((sel) => {
+      const a = $(sel);
+      if (!a) return;
+      a.href = dlUrl;
+      a.target = "_blank"; // download externo (GitHub/MediaFire) abre em nova aba
+    });
+  }
   ["#btnGithub", "#btnGithubSide"].forEach((sel) => {
     const a = $(sel);
     if (a) {
@@ -113,11 +138,12 @@
   }
 
   /* ------------------------------------------------------------- Sidebar */
+  const isWebPage = g.type === "web";
   $("#infoList").innerHTML = `
-    <div><dt>Versão</dt><dd class="accent">${g.version ? `v${esc(g.version)}` : "Em breve"}</dd></div>
-    <div><dt>APK</dt><dd>${esc(g.apkSize || "—")}</dd></div>
+    <div><dt>Versão</dt><dd class="accent">${g.version ? `v${esc(g.version)}` : isWebPage ? "Web" : "Em breve"}</dd></div>
+    <div><dt>${isWebPage ? "Onde roda" : "APK"}</dt><dd>${isWebPage ? "Navegador (sem APK)" : esc(g.apkSize || "—")}</dd></div>
     <div><dt>Armazenamento</dt><dd>${esc(g.storage || "—")}</dd></div>
-    <div><dt>Chipset recomendado</dt><dd>${esc(g.chipsetRecommended || "—")}</dd></div>
+    <div><dt>Chipset recomendado</dt><dd>${esc(g.chipsetRecommended || (isWebPage ? "Não se aplica" : "—"))}</dd></div>
     <div><dt>Desempenho</dt><dd>${esc(PERF_LABEL[g.performance] || "—")}</dd></div>
     <div><dt>Downloads</dt><dd class="accent">${fmtNum(g.downloads || 0)}</dd></div>
     <div><dt>Atualizado em</dt><dd>${fmtDate(g.updated)}</dd></div>
@@ -188,9 +214,9 @@
     "@type": "VideoGame",
     name: g.title,
     description: desc,
-    gamePlatform: "Android",
+    gamePlatform: g.type === "web" ? "Web browser" : "Android",
     applicationCategory: "Game",
-    operatingSystem: "Android",
+    operatingSystem: g.type === "web" ? "Web browser" : "Android",
     image: new URL(g.cover, location.href).href,
     author: { "@type": "Person", name: g.credit?.port || "", url: g.credit?.portUrl || "" },
     url: location.href,

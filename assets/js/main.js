@@ -17,6 +17,13 @@ const SITE = {
   github: "https://github.com/deivid22srk/port-droid",
 };
 
+/* Raiz do site, derivada da própria URL deste script (…/assets/js/main.js).
+   Páginas em subpastas — ex. play/ — precisam dela para achar data/ e assets/. */
+const ROOT_URL = new URL(
+  "../../",
+  (document.currentScript && document.currentScript.src) || new URL("assets/js/main.js", location.href).href
+).href;
+
 /* Icones SVG inline (estilo feather — stroke currentColor) */
 const I = (paths, fill = false) =>
   `<svg class="ico" viewBox="0 0 24 24" ${fill ? 'fill="currentColor" stroke="none"' : 'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"'} aria-hidden="true">${paths}</svg>`;
@@ -25,6 +32,8 @@ const ICONS = {
   search: I('<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>'),
   chevronLeft: I('<polyline points="15 18 9 12 15 6"/>'),
   clock: I('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>'),
+  check: I('<polyline points="20 6 9 17 4 12"/>'),
+  expand: I('<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>'),
   home: I('<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h5v-6h4v6h5V9.5"/>'),
   menu: I('<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>'),
   close: I('<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>'),
@@ -96,7 +105,7 @@ async function getGames() {
   // Rede primeiro: o catálogo precisa refletir o games.json publicado imediatamente.
   // O cache local (localStorage) fica apenas como fallback para uso offline.
   try {
-    const res = await fetch("./data/games.json", { cache: "no-cache" });
+    const res = await fetch(new URL("data/games.json", ROOT_URL), { cache: "no-cache" });
     if (res.ok) {
       const data = await res.json();
       const games = data.games || [];
@@ -123,6 +132,7 @@ async function getGames() {
 /* ------------------------------------------------------------- Templates */
 function cardHTML(g) {
   const perf = PERF_LABEL[g.performance] || "";
+  const isWeb = g.type === "web";
   return `
   <article class="card reveal">
     <a class="card-link" href="./game.html?id=${encodeURIComponent(g.id)}" aria-label="Ver página do port ${esc(g.title)}">
@@ -134,11 +144,12 @@ function cardHTML(g) {
         <h3 class="card-title">${esc(g.title)}</h3>
         <p class="card-sub">${esc(g.port)}</p>
         <div class="card-tags">
+          ${isWeb ? `<span class="chip chip-accent">${ICONS.play} Web</span>` : ""}
           ${(g.chipsets || []).slice(0, 2).map((c) => `<span class="chip">${esc(c)}</span>`).join("")}
           ${perf ? `<span class="chip chip-accent">${esc(perf)}</span>` : ""}
         </div>
         <div class="card-meta">
-          <span>${esc(g.apkSize || g.storage || "—")} · v${esc(g.version || "—")}</span>
+          <span>${isWeb ? "Roda no navegador" : `${esc(g.apkSize || g.storage || "—")} · v${esc(g.version || "—")}`}</span>
           ${g.downloads ? `<span class="dl">${ICONS.download}${fmtCompact(g.downloads)}</span>` : ""}
         </div>
       </div>
@@ -208,8 +219,9 @@ function activeTab() {
 }
 
 function renderBottomNav() {
-  /* A tela de busca é uma "atividade" de tela cheia, sem barras de navegação */
-  if (document.body.dataset.page === "search") return;
+  /* Telas de app em tela cheia (busca e player) ficam sem barras de navegação */
+  const page = document.body.dataset.page || "";
+  if (page === "search" || page === "play") return;
   if ($("#bottomNav")) return;
   const nav = document.createElement("nav");
   nav.className = "bottom-nav";
@@ -315,6 +327,7 @@ let installEvt = null;
 
 function setupInstallPill() {
   if (matchMedia("(display-mode: standalone)").matches) return; // já é app instalado
+  if (document.body.dataset.page === "play") return; // não distrair durante o jogo
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     installEvt = e;

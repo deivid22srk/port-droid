@@ -22,7 +22,8 @@ Android, organizados pelo canal [Hail Games (@Hail-Games1)](https://www.youtube.
 - **Experiência estilo aplicativo**: navigation bar inferior fixa com 4 abas (Início · Jogos · Buscar · Canal), app bar compacta com busca, splash screen na abertura, transição suave entre telas e pill de "Instalar app" — no desktop (≥900px) volta à navegação superior tradicional
 - **Tela de busca dedicada**: tocar no ícone de busca, no campo do app bar ou na aba *Buscar* abre uma tela cheia de busca estilo app Android — campo já focado, buscas recentes salvas no aparelho, sugestões de categorias/populares, resultados ao vivo com o termo destacado e Enter abre o primeiro resultado
 - **Catálogo** com busca em tempo real e filtros (categoria, chipset, desempenho), ordenação e estado sincronizado na URL
-- **Página do jogo** com banner, galeria + lightbox, requisitos mínimos/recomendados, instruções de instalação, créditos dos autores e botões "Baixar APK" / "Ver no GitHub"
+- **Ports web (no branch feat/web-ports)**: jogos que rodam no próprio navegador, com o **player do port-droid** (`play/`) — nossa interface em volta do runner embutido, atalho "Selecionar ISO", teste automático do navegador, tela cheia e isolamento COOP/COEP via `play/coi.js` (SharedArrayBuffer) sem afetar o resto do site
+- **Página do jogo** com banner, galeria + lightbox, requisitos mínimos/recomendados, instruções de instalação, créditos dos autores e botões "Baixar APK" / "Ver no GitHub" (ports web trocam por "Jogar no navegador")
 - **Sobre o canal** com links do YouTube e do Telegram
 - **Aviso legal** completo (sem afiliação, sem hospedagem de arquivos, contato para remoção)
 - **PWA** instalável (manifest + service worker com estratégia network-first para páginas e cache para assets)
@@ -96,6 +97,8 @@ npx serve .
    | `links.download` / `links.github` | **Obrigatórios:** release/APK oficial e repositório do autor |
    | `credit` | Autor do port, projeto original e copyright do jogo |
    | `status` / `statusLabel` | `ativo`, `em-breve`, `removido` + rótulo exibido no card |
+   | `type` | `android` (padrão: APK/instalável) ou `web` (roda no navegador via player `play/`) |
+   | `links.play` | **Só para `type: "web"`**: URL do runner relativa a `play/` (ex.: `./halo-ce/index.html`) |
 
 2. Crie a pasta de imagens do jogo e referencie no JSON:
 
@@ -110,6 +113,15 @@ npx serve .
    nenhum outro arquivo: home, catálogo e página do jogo se atualizam sozinhos.
 
 3. Commit + push → o GitHub Actions publica automaticamente.
+
+> 🌐 **Ports web (`type: "web"`)**: em vez de APK, o jogo roda no navegador dentro do
+> player do port-droid (`play/?id=…`). Coloque o build do runner (público no site do
+> projeto, com licença compatível) em `play/<pasta>/` com um `ATTRIBUTION.md` de créditos,
+> aponte `links.play` para o `index.html` dele (relativo a `play/`) e pronto: o player
+> injeta a tela cheia, o teste do navegador e o atalho "Selecionar ISO". O isolamento
+> COOP/COEP (necessário para SharedArrayBuffer) já está resolvido: `play/coi.js` isola a
+> página do topo e o runner roda na mesma origem, dentro de `play/`, então o service
+> worker dele continua funcionando. Veja `play/halo-ce/ATTRIBUTION.md` como exemplo.
 
 > ℹ️ Os contadores de `downloads` deste repositório foram capturados da soma
 > pública de downloads das releases do GitHub em 03/10/2026. Atualize o número
@@ -180,6 +192,10 @@ funciona nos dois modos sem alterar nada.
 - **Lost Odyssey** — [Lost Odyssey Recomp](https://github.com/freefrank/LostOdysseyRecomp),
   port experimental de [freefrank](https://github.com/freefrank) via recompilação
   estática · GPL-3.0 · Lost Odyssey © Mistwalker / Microsoft
+- **Halo: Combat Evolved (web)** — [Halo CE Mobile](https://github.com/fucktrevor/HCE-Mobile)
+  de fucktrevor, port web da decompilação do jogo (build 2342 do Xbox) por
+  punpckhdq/halo e bnunu/halo-1, via [halo-ce-universal](https://github.com/cybersecurity/halo-ce-universal)
+  · CC0-1.0 · build empacotado em `web/halo-ce/` (sem dados do jogo) · Halo © Microsoft
 
 ## 📄 Licença
 

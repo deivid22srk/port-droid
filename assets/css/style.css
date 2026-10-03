@@ -321,6 +321,12 @@ ul, ol {
   flex-shrink: 0;
 }
 
+.chip .ico {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+}
+
 .badge-status {
   position: absolute;
   top: 10px;

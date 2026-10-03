@@ -21,6 +21,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://deivid22srk.github.io/port-droid/game.html?id=halo-ce</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://deivid22srk.github.io/port-droid/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
