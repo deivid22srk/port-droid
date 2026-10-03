@@ -89,26 +89,33 @@ const fmtDate = (iso) => {
 
 /* ----------------------------------------------------- Camada de dados */
 const GAMES_CACHE_KEY = "pd_games_cache_v1";
-const GAMES_TTL = 30 * 60 * 1000; // 30 min
 
 async function getGames() {
-  // cache local para carregamento quase instantâneo nas visitas seguintes
+  // Rede primeiro: o catálogo precisa refletir o games.json publicado imediatamente.
+  // O cache local (localStorage) fica apenas como fallback para uso offline.
   try {
-    const raw = localStorage.getItem(GAMES_CACHE_KEY);
-    if (raw) {
-      const { t, games } = JSON.parse(raw);
-      if (Date.now() - t < GAMES_TTL && Array.isArray(games) && games.length) return games;
+    const res = await fetch("./data/games.json", { cache: "no-cache" });
+    if (res.ok) {
+      const data = await res.json();
+      const games = data.games || [];
+      if (!games.length) throw new Error("games.json vazio");
+      try {
+        localStorage.setItem(GAMES_CACHE_KEY, JSON.stringify({ t: Date.now(), games }));
+      } catch (_) { /* storage cheio/indisponível */ }
+      return games;
     }
-  } catch (_) { /* ignora cache corrompido */ }
-
-  const res = await fetch("./data/games.json", { cache: "no-cache" });
-  if (!res.ok) throw new Error("Falha ao carregar data/games.json");
-  const data = await res.json();
-  const games = data.games || [];
-  try {
-    localStorage.setItem(GAMES_CACHE_KEY, JSON.stringify({ t: Date.now(), games }));
-  } catch (_) { /* storage cheio/indisponível */ }
-  return games;
+    throw new Error(`HTTP ${res.status} em data/games.json`);
+  } catch (err) {
+    // offline ou falha de rede: usa o cache local mais recente que existir
+    try {
+      const raw = localStorage.getItem(GAMES_CACHE_KEY);
+      if (raw) {
+        const { games } = JSON.parse(raw);
+        if (Array.isArray(games) && games.length) return games;
+      }
+    } catch (_) { /* cache corrompido */ }
+    throw err;
+  }
 }
 
 /* ------------------------------------------------------------- Templates */
