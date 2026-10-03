@@ -9,7 +9,7 @@
    ============================================================================= */
 "use strict";
 
-const VERSION = "v1.4.0";
+const VERSION = "v1.4.1";
 const CACHE = `port-droid-${VERSION}`;
 
 const PRECACHE = [

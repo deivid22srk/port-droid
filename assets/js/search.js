@@ -228,22 +228,24 @@
   });
 
   /* ---------------------------------------------------------------- Boot */
+  /* foco e buscas recentes primeiro: não dependem da rede (teclado sobe já) */
+  input.focus({ preventScroll: true });
+  renderRecents();
+
   try {
     games = await getGames();
     renderSuggestions();
+    /* se o usuário digitou enquanto o catálogo carregava, re-renderiza */
+    if (input.value.trim()) render();
   } catch (err) {
     suggestCats.innerHTML = "";
     suggestList.innerHTML = `<p class="s-error">${esc(err.message || "Falha ao carregar o catálogo.")} Verifique sua conexão e recarregue a página.</p>`;
   }
 
+  /* deep link ?q=... : só preenche se o campo ainda estiver vazio */
   const q0 = new URLSearchParams(location.search).get("q");
-  if (q0) {
+  if (q0 && input.value.trim() !== q0) {
     input.value = q0;
     render();
-  } else {
-    renderRecents();
   }
-
-  /* campo já focado, como app nativo (teclado sobe no celular) */
-  input.focus({ preventScroll: true });
 })();
