@@ -2,7 +2,7 @@
   "site": {
     "name": "port-droid",
     "tagline": "Ports de jogos para Android",
-    "updated": "2026-10-03",
+    "updated": "2026-10-06",
     "youtube": "https://www.youtube.com/@Hail-Games1",
     "telegram": "https://t.me/hailgames2",
     "github": "https://github.com/deivid22srk/port-droid"
@@ -347,6 +347,88 @@
         "game": "Lost Odyssey © Mistwalker / Microsoft"
       },
       "license": "GPL-3.0",
+      "type": "android"
+    },
+    {
+      "id": "woodyre",
+      "title": "Woody Woodpecker: Escape from Buzz Buzzard Park",
+      "port": "WoodyRE (Android)",
+      "original": "PC (2001)",
+      "categories": [
+        "plataforma",
+        "aventura"
+      ],
+      "tags": [
+        "Android 7+",
+        "ARM64",
+        "OpenGL ES 2.0",
+        "Toque",
+        "Controle",
+        "CD próprio"
+      ],
+      "chipsets": [],
+      "performance": "leve",
+      "version": "1.0.4",
+      "apkSize": "4,7 MB",
+      "storage": "~640 MB para os dados do CD (importados pelo usuário)",
+      "updated": "2026-10-05",
+      "dateAdded": "2026-10-06",
+      "status": "ativo",
+      "statusLabel": "Ativo · v1.0.4",
+      "featured": false,
+      "downloads": 0,
+      "cover": "assets/img/games/woodyre/cover.webp",
+      "banner": "assets/img/games/woodyre/banner.webp",
+      "screenshots": [
+        "assets/img/games/woodyre/shot-1.webp",
+        "assets/img/games/woodyre/shot-2.webp"
+      ],
+      "videoId": null,
+      "shortDescription": "Woody Woodpecker: Escape from Buzz Buzzard Park no Android, com controles de toque e suporte a controle físico — requer os dados do seu próprio CD.",
+      "description": [
+        "WoodyRE é uma reimplementação por engenharia reversa do motor de Woody Woodpecker: Escape from Buzz Buzzard Park (PC, 2001). A versão Android roda em aparelhos ARM64 com Android 7.0 ou superior e OpenGL ES 2.0, com controles de toque e suporte a controles USB ou Bluetooth.",
+        "Na primeira execução, selecione uma imagem ISO do CD ou uma pasta com os arquivos da sua cópia. O aplicativo copia e verifica os dados do jogo (cerca de 640 MB) no armazenamento privado do Android. Os dados originais do jogo não são incluídos no port nem neste site.",
+        "A versão 1.0.4 traduz os menus para o idioma do CD, incluindo português brasileiro nas edições compatíveis, e permite ajustar a câmera pelo analógico direito. O projeto declara suporte ao CD inglês 1.00, ao espanhol e às edições de fevereiro de 2002 em português brasileiro, polonês e russo."
+      ],
+      "requirements": {
+        "minimo": {
+          "Sistema": "Android 7.0 ou superior, aparelho de 64 bits (ARM64)",
+          "GPU": "OpenGL ES 2.0",
+          "Jogo": "Sua própria cópia do CD original (ISO ou arquivos extraídos)",
+          "Armazenamento": "Cerca de 640 MB para os dados importados do jogo"
+        },
+        "recomendado": {
+          "Controle": "Tela de toque ou controle USB/Bluetooth",
+          "Mídia": "CD compatível: inglês, espanhol, português brasileiro, polonês ou russo"
+        }
+      },
+      "chipsetRecommended": "A confirmar por aparelho; requer ARM64 e OpenGL ES 2.0",
+      "controls": [
+        "Tela de toque: analógico virtual na metade esquerda; botões de ação e câmera à direita",
+        "Controle Bluetooth ou USB compatível; conectar um controle oculta os botões de toque",
+        "Toque na tela para trazer de volta os controles de toque"
+      ],
+      "install": [
+        "Baixe o APK WoodyRE-v1.0.4.apk na página de Releases oficial.",
+        "Permita a instalação de apps de fontes desconhecidas quando o Android pedir e instale o APK.",
+        "Na primeira abertura, selecione uma imagem ISO do seu CD original ou uma pasta com os arquivos do CD.",
+        "Aguarde o port copiar e verificar os arquivos do jogo no armazenamento do aplicativo (cerca de 640 MB). O jogo original não está incluído."
+      ],
+      "notes": "Projeto de fã para preservação, sem afiliação ou endosso de Eko Software, Cryo Interactive, Microïds, Universal ou Walter Lantz Productions. Os dados do jogo não são distribuídos; use sua própria cópia legal do CD. Desempenho pode variar conforme o aparelho.",
+      "links": {
+        "github": "https://github.com/jjmhalew/WoodyRE",
+        "releases": "https://github.com/jjmhalew/WoodyRE/releases/latest",
+        "download": "https://github.com/jjmhalew/WoodyRE/releases/download/v1.0.4/WoodyRE-v1.0.4.apk",
+        "tutorial": "https://www.youtube.com/@Hail-Games1"
+      },
+      "credit": {
+        "port": "jjmhalew — WoodyRE",
+        "portUrl": "https://github.com/jjmhalew/WoodyRE",
+        "original": "Eko Software / Cryo Interactive — Woody Woodpecker (2001)",
+        "originalUrl": "https://github.com/jjmhalew/WoodyRE",
+        "game": "Woody Woodpecker e marcas relacionadas pertencem aos respectivos titulares"
+      },
+      "license": "GPL-3.0-or-later (código do port)",
       "type": "android"
     },
     {

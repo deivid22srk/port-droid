@@ -9,7 +9,7 @@
    ============================================================================= */
 "use strict";
 
-const VERSION = "v1.6.0";
+const VERSION = "v1.6.1";
 const CACHE = `port-droid-${VERSION}`;
 
 const PRECACHE = [
@@ -34,6 +34,10 @@ const PRECACHE = [
   "./assets/img/games/sonic-unleashed/banner.svg",
   "./assets/img/games/skate-3/cover.svg",
   "./assets/img/games/skate-3/banner.svg",
+  "./assets/img/games/woodyre/cover.webp",
+  "./assets/img/games/woodyre/banner.webp",
+  "./assets/img/games/woodyre/shot-1.webp",
+  "./assets/img/games/woodyre/shot-2.webp",
 ];
 
 self.addEventListener("install", (event) => {
