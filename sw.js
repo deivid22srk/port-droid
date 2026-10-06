@@ -9,7 +9,7 @@
    ============================================================================= */
 "use strict";
 
-const VERSION = "v1.6.1";
+const VERSION = "v1.6.2";
 const CACHE = `port-droid-${VERSION}`;
 
 const PRECACHE = [
@@ -38,6 +38,10 @@ const PRECACHE = [
   "./assets/img/games/woodyre/banner.webp",
   "./assets/img/games/woodyre/shot-1.webp",
   "./assets/img/games/woodyre/shot-2.webp",
+  "./assets/img/games/simpsons-hit-and-run/cover.webp",
+  "./assets/img/games/simpsons-hit-and-run/banner.webp",
+  "./assets/img/games/simpsons-hit-and-run/shot-1.webp",
+  "./assets/img/games/simpsons-hit-and-run/shot-2.webp",
 ];
 
 self.addEventListener("install", (event) => {

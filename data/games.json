@@ -432,6 +432,93 @@
       "type": "android"
     },
     {
+      "id": "simpsons-hit-and-run",
+      "title": "The Simpsons: Hit & Run",
+      "port": "The Simpsons: Hit & Run Android",
+      "original": "PC (2003)",
+      "categories": [
+        "acao",
+        "aventura",
+        "corrida"
+      ],
+      "tags": [
+        "Android 7+",
+        "ARMv7/ARM64",
+        "OpenGL ES",
+        "Toque",
+        "Gamepad",
+        "PAL/NTSC"
+      ],
+      "chipsets": [
+        "MediaTek",
+        "PowerVR"
+      ],
+      "performance": "medio",
+      "version": "0.93",
+      "apkSize": "~80 MB (NTSC) / ~81 MB (PAL)",
+      "storage": "Vários GB para os arquivos da sua cópia de PC (não incluídos)",
+      "updated": "2026-07-24",
+      "dateAdded": "2026-10-06",
+      "status": "ativo",
+      "statusLabel": "Ativo · v0.93",
+      "featured": false,
+      "downloads": 0,
+      "cover": "assets/img/games/simpsons-hit-and-run/cover.webp",
+      "banner": "assets/img/games/simpsons-hit-and-run/banner.webp",
+      "screenshots": [
+        "assets/img/games/simpsons-hit-and-run/shot-1.webp",
+        "assets/img/games/simpsons-hit-and-run/shot-2.webp"
+      ],
+      "videoId": null,
+      "shortDescription": "Port Android de The Simpsons: Hit & Run com controles de toque configuráveis e gamepad — exige os arquivos da sua cópia original de PC.",
+      "description": [
+        "Port não oficial para Android ARMv7/ARM64 de The Simpsons: Hit & Run (PC, 2003). A versão 0.93 corrige a iluminação no OpenGL ES e melhora o desempenho; inclui controles de toque configuráveis e suporte a gamepad.",
+        "O APK não inclui os arquivos do jogo. É necessário possuir uma cópia legal da versão oficial para PC. Abra o aplicativo uma vez para criar Android/data/com.c4rlox.simpsons/files e copie os arquivos para essa pasta. Os assets da versão de código-fonte vazada não são compatíveis.",
+        "A release oferece APKs NTSC e PAL. O README do port cita como referência de desempenho um aparelho semelhante a MediaTek Helio P35/PowerVR Rogue GE8320 com 3 GB de RAM; 2 GB podem funcionar em alguns aparelhos."
+      ],
+      "requirements": {
+        "minimo": {
+          "Sistema": "Android 7.0 ou superior (API 24)",
+          "Arquitetura": "ARMv7 (armeabi-v7a) ou ARM64 (arm64-v8a)",
+          "Jogo": "Arquivos da sua própria cópia oficial para PC — não incluídos no APK",
+          "Armazenamento": "Vários GB livres; depende dos arquivos do jogo instalados"
+        },
+        "recomendado": {
+          "CPU/GPU": "MediaTek Helio P35 / PowerVR Rogue GE8320 (referência do README)",
+          "Memória": "3 GB de RAM; 2 GB podem funcionar em alguns aparelhos",
+          "Controles": "Toque configurável ou gamepad Bluetooth/USB"
+        }
+      },
+      "chipsetRecommended": "MediaTek Helio P35 / PowerVR Rogue GE8320 (configuração de referência)",
+      "controls": [
+        "Controles de toque integrados; ajuste de posição, tamanho e opacidade",
+        "Suporte a gamepad externo Bluetooth ou USB",
+        "Layouts de toque configuráveis (v0.92+)"
+      ],
+      "install": [
+        "Baixe o APK PAL ou NTSC v0.93 pela página oficial de Releases.",
+        "Permita a instalação de aplicativos de fontes desconhecidas e instale o APK.",
+        "Abra o app ao menos uma vez para criar Android/data/com.c4rlox.simpsons/files.",
+        "Copie para essa pasta os arquivos da sua própria versão oficial para PC. Não use assets da versão de código-fonte vazada; eles não são compatíveis. O jogo original não está incluído."
+      ],
+      "notes": "Port de fãs sem afiliação ou endosso dos titulares de The Simpsons. O APK não inclui dados do jogo; use sua própria cópia legal da versão para PC. A licença do port não está identificada no repositório do fork.",
+      "links": {
+        "github": "https://github.com/Carlox33/The-Simpsons-Hit-and-Run-Android",
+        "releases": "https://github.com/Carlox33/The-Simpsons-Hit-and-Run-Android/releases/latest",
+        "download": "https://github.com/Carlox33/The-Simpsons-Hit-and-Run-Android/releases/latest",
+        "tutorial": "https://github.com/Carlox33/The-Simpsons-Hit-and-Run-Android/blob/master/INSTALLATION.md"
+      },
+      "credit": {
+        "port": "Carlox33 — port Android",
+        "portUrl": "https://github.com/Carlox33/The-Simpsons-Hit-and-Run-Android",
+        "original": "ZenoArrows — port-base para Switch/PS Vita; jogo original para PC",
+        "originalUrl": "https://github.com/ZenoArrows/The-Simpsons-Hit-and-Run",
+        "game": "The Simpsons: Hit & Run © respectivos titulares; port não oficial"
+      },
+      "license": "Não informada no repositório do port",
+      "type": "android"
+    },
+    {
       "id": "halo-ce",
       "type": "web",
       "title": "Halo: Combat Evolved",

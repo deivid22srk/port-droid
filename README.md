@@ -196,6 +196,8 @@ funciona nos dois modos sem alterar nada.
 - **Woody Woodpecker: Escape from Buzz Buzzard Park** — [WoodyRE](https://github.com/jjmhalew/WoodyRE),
   reimplementação do motor por jjmhalew · GPL-3.0-or-later · os dados do CD e as marcas
   do jogo original não são incluídos e pertencem aos respectivos titulares
+- **The Simpsons: Hit & Run** — [port Android de Carlox33](https://github.com/Carlox33/The-Simpsons-Hit-and-Run-Android),
+  baseado no trabalho de [ZenoArrows](https://github.com/ZenoArrows/The-Simpsons-Hit-and-Run); exige os arquivos da cópia original para PC, não incluídos aqui · © respectivos titulares
 - **Halo: Combat Evolved (web)** — [Halo CE Mobile](https://github.com/fucktrevor/HCE-Mobile)
   de fucktrevor, port web da decompilação do jogo (build 2342 do Xbox) por
   punpckhdq/halo e bnunu/halo-1, via [halo-ce-universal](https://github.com/cybersecurity/halo-ce-universal)
